@@ -1,4 +1,4 @@
-package Class1_Sort;
+package Class01_Sort;
 /*
  * Given an array of integers, move all the 0s to the 
  * right end of the array.

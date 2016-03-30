@@ -1,4 +1,4 @@
-package Class1_Sort;
+package Class01_Sort;
 
 public class SelectionSort {
 	public int[] sort(int[] array) {
