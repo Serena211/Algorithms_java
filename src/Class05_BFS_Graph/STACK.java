@@ -2,7 +2,7 @@ package Class05_BFS_Graph;
 
 public class STACK {
 	public STACK() {
-		head = null;  //if no misunderstanding use "head", this.head = head or head = h
+		head = null;  //if no ambiguity use "head", this.head = head or head = h
 	}
 	private ListNode head;
 	//offer, peek, pop
