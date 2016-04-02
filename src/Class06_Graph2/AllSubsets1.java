@@ -52,7 +52,7 @@ public class AllSubsets1 {
 		helper(origin, temp, result, index + 1);	
 	}
 	public static void main(String[] args) {
-		String t = "abc";
+		String t = "asd";
 		List<String> rsl = subSets(t);
 		for(String s : rsl) {
 			System.out.println(s);
