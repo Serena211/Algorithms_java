@@ -2,6 +2,7 @@
 Java Exercises
 
 **What are the differences between static and non-static nested classes?** 
+
 Following are major differences between static nested class and non-static nested class. Non-static nested class is also called Inner Class.
 
 1) Nested static class doesn’t need reference of Outer class, but Non-static nested class or Inner class requires Outer class reference.
@@ -11,6 +12,7 @@ Following are major differences between static nested class and non-static neste
 3) An instance of Inner class cannot be created without an instance of outer class and an Inner class can reference data and methods defined in Outer class in which it nests, so we don’t need to pass reference of an object to the constructor of the Inner class. For this reason Inner classes can make program simple and concise.
 
 **Priority Queue** default as minHeap
+
 Parameters:
 o1 - the first object to be compared.
 o2 - the second object to be compared.
