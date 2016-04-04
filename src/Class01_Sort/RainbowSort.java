@@ -42,7 +42,7 @@ public class RainbowSort {
 			} else {
 				swap(array, i, blue);
 				blue--;
-				i--;
+				i--;	// after swap, it need to judge array[i] again
 			}
 		}
 		return array;
