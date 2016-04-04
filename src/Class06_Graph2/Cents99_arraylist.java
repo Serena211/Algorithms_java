@@ -1,6 +1,7 @@
 package Class06_Graph2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -29,15 +30,41 @@ import java.util.List;
  * the denomination at corresponding index.
  * */
 
-public class Cents99 {
-	public List<List<Integer>> combinations(int target, int[] coins) {
+public class Cents99_arraylist {
+	public static List<List<Integer>> combinations(int target, int[] coins) {
 		List<List<Integer>> rsl = new ArrayList<List<Integer>>();
-		return null;
+		
+		//use ArrayList to store current solution
+		List<Integer> curSolution = new ArrayList<Integer>();
+		helper(target, coins, 0, curSolution, rsl);
+		return rsl;
+	}
+	
+	private static void helper(int target, int[] coins, int index,
+			List<Integer> curSolution, List<List<Integer>> rsl) {
+		// base case: have traversed all denominations
+		if (index == coins.length - 1) {
+			if(target % coins[index] == 0) {
+			curSolution.add(target/coins[index]);
+			rsl.add(new ArrayList<Integer>(curSolution));
+			curSolution.remove(curSolution.size() - 1);
+			}
+			return;
+			
+		} 
+		int branch = target / coins[index];
+		for (int i = 0; i <= branch; i++) {
+			int moneyLeft = target - coins[index] * i;
+			curSolution.add(i);
+			helper(moneyLeft, coins, index + 1, curSolution, rsl);
+			curSolution.remove(curSolution.size() - 1);
+		}
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		int[] coins = new int[]{5,2,1};
+		List<List<Integer>> rsl = combinations(30, coins);
+		System.out.println(rsl.toString());
 	}
 
 }

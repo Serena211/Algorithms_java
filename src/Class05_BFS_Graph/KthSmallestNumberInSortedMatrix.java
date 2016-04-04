@@ -17,7 +17,6 @@ import java.util.PriorityQueue;
  */
 
 public class KthSmallestNumberInSortedMatrix {
-	// Using Cell to store matrix's indexes and values
 	static class Cell{
 		int row;
 		int col;
@@ -29,7 +28,6 @@ public class KthSmallestNumberInSortedMatrix {
 		}
 		
 	}
-	
 	public int kthSmallest(int[][] matrix, int k) {
 		// get row and col numbers of this matrix
 		int row = matrix.length;
@@ -80,3 +78,22 @@ public class KthSmallestNumberInSortedMatrix {
 	}
 
 }
+/*//Using Cell to store matrix's indexes and values
+class Cell implements Comparable<Cell>{
+	public int row;
+	public int col;
+	public int value;
+	public Cell(int row, int col, int value) {
+		this.row = row;
+		this.col = col;
+		this.value = value;
+	}
+	@Override
+	public int compareTo(Cell another) {
+		if(this.value == another.value) {
+			return 0;
+		}
+		return this.value < another.value? -1 : 1;
+	}	
+}*/
+

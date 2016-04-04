@@ -4,3 +4,6 @@
 
 2. How many different states should we try to put on this level?
 
+**Questions:**
+
+1. For Cents99 algorithm, what's the different of using int[] and ArrayList to store current solutions?

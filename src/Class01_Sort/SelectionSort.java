@@ -1,5 +1,14 @@
 package Class01_Sort;
-
+/*
+ * Given an array of integers, sort the elements in the 
+ * array in ascending order. The selection sort algorithm 
+ * should be used to solve this problem.
+ * 
+ * Time Complexity:
+ * Outer loop: 0 - n
+ * Inner loop: 1 - n, 2 - n, 3 - n,... , n-1 - n
+ * O(n^2)
+ * */
 public class SelectionSort {
 	public int[] sort(int[] array) {
 		if (array == null || array.length == 0) {
