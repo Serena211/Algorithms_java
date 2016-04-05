@@ -46,6 +46,7 @@ public class Cents99_arraylist {
 		if (index == coins.length - 1) {
 			if(target % coins[index] == 0) {
 			curSolution.add(target/coins[index]);
+			// always new an new ArrayList, object pass by reference
 			rsl.add(new ArrayList<Integer>(curSolution));
 			curSolution.remove(curSolution.size() - 1);
 			}
