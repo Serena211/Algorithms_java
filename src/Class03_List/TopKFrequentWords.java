@@ -28,7 +28,7 @@ import java.util.PriorityQueue;
  * */
 
 public class TopKFrequentWords {
-	public String[] topKFrequent(String[] combo, int k) {
+	public static String[] topKFrequent(String[] combo, int k) {
 		if(combo.length == 0 || k == 0) {
 			return new String[0];
 		}
@@ -41,8 +41,9 @@ public class TopKFrequentWords {
 			Integer count = wordsFrequent.get(word);
 			if(count == null) {
 				wordsFrequent.put(word, 1);
+			} else {
+				wordsFrequent.put(word, count + 1);
 			}
-			wordsFrequent.put(word, count + 1);
 		}
 		// set a max heap
 		Comparator<String> stringComparator = new Comparator<String>() {
@@ -52,7 +53,7 @@ public class TopKFrequentWords {
 				if(wordsFrequent.get(o1) == wordsFrequent.get(o2)) {
 					return 0;
 				}
-				return wordsFrequent.get(o1) < wordsFrequent.get(o2)? 1 : -1;
+				return wordsFrequent.get(o1) < wordsFrequent.get(o2)? -1 : 1;
 			} 
 			
 		};
@@ -67,8 +68,9 @@ public class TopKFrequentWords {
 					minHeap.offer(entry.getKey());
 			}
 		}
-		String[] rsl = new String[k];
-		for (int i = k - 1; i >= 0; i--) {
+		int size = minHeap.size();		//if k >= array.length, so it may not have k unique values
+		String[] rsl = new String[size];
+		for (int i = size - 1; i >= 0; i--) {
 			rsl[i] = minHeap.poll();
 		}
 		return rsl;
@@ -76,8 +78,8 @@ public class TopKFrequentWords {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		String[] rsl = topKFrequent(new String[]{"a","a","b"},2);
+		System.out.println(rsl);
 	}
 
 }
