@@ -9,32 +9,34 @@ package Class07_Hashtable_String1;
  * Examples
  * "abbbaaccz" → "aaaccz" → "ccz" → "z"
  * "aabccdc" → "bccdc" → "bdc"
+ * "abbaaab" → "aaaab" → "b"
  */
 public class RemoveAdjacentRepeatedCharacters4 {
 	// using stack
 	public String deDup(String input) {
-		if (input == null || input.length() == 0 || input.length() == 1) {
+		if (input == null || input.length() <= 1) {
 			return input;
 		}
 		char[] in = input.toCharArray();
-		int top = 0;		// return [0, top]
-		int newChar = 1;	// explore zone (top, array.length - 1]
-		while (newChar < in.length) {
-			if (in[newChar] == in[top]) {
-				while (in[newChar] == in[top]) {
-					newChar++;
-				}
-				top--;
+		int end = 0;	// return [0, end]
+		int pointer = 1;
+		while (pointer < in.length) {
+			if (end == -1 || in[pointer] != in[end]) {
+				in[++end] = in[pointer++];
 			} else {
-				in[++top] = in[newChar++];
+				while (pointer < in.length && in[pointer] == in[end]) {
+					pointer++;
+				}
+				end--;
 			}
+			
 		}
-		return top < 0 ? new String("") : new String(in, 0, top + 1) ;
+		return  new String(in, 0, end+1) ;
 	}
 
 	public static void main(String[] args) {
 		RemoveAdjacentRepeatedCharacters4 sol = new RemoveAdjacentRepeatedCharacters4();
-		System.out.println(sol.deDup("abbaaac"));
+		System.out.println(sol.deDup("abbaaab"));
 	}
 
 }
