@@ -16,7 +16,7 @@ public class MissingNumber1 {
 	public int missing(int[] array) {
 		int n = array.length + 1;
 		int xorPredict = 0;
-		for (int i = 1; i <= n; i++) {
+		for (int i = 0; i <= n; i++) {
 			xorPredict ^= i;
 		}
 		int xorActual = 0;
@@ -26,10 +26,21 @@ public class MissingNumber1 {
 		
 		return xorActual ^ xorPredict;
 	}
-
+    public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int xorA = 0;
+        for (int i = 0; i <= n; i++) {
+            xorA ^= i;
+        }
+        int xorB = 0;
+        for (int ele : nums) {
+            xorB ^= ele;
+        }
+        return xorA ^ xorB;
+    }
 	public static void main(String[] args) {
 		MissingNumber1 sol = new MissingNumber1();
-		System.out.println(sol.missing(new int[]{1,2,3}));
+		System.out.println(sol.missingNumber(new int[]{0}));
 	}
 
 }
