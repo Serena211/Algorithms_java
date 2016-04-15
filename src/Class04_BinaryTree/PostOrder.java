@@ -1,4 +1,4 @@
-package ex;
+package Class04_BinaryTree;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -39,6 +39,40 @@ public class PostOrder {
 		}
 		return rsl;
 	}
+	public List<Integer> post(TreeNode root) {
+		List<Integer> rsl = new ArrayList<Integer>();
+		if (root == null) {
+			return rsl;
+		}
+		TreeNode prev = null;
+		Deque<TreeNode> stack = new LinkedList<TreeNode>();
+		stack.offerFirst(root);
+		while (!stack.isEmpty()) {
+			TreeNode cur = stack.peekFirst();
+			if (prev == null || cur == prev.left || cur == prev.right) {
+				if (cur.left != null) {
+					stack.offerFirst(cur.left);
+				} else if (cur.right != null) {
+					stack.offerFirst(cur.right);
+				} else {
+					rsl.add(cur.val);
+					stack.pollFirst();
+				}
+			} else if (prev == cur.left) {
+				if (cur.right != null) {
+					stack.offerFirst(cur.right);
+				} else {
+					rsl.add(cur.val);
+					stack.pollFirst();
+				}
+			} else {
+				rsl.add(cur.val);
+				stack.pollFirst();
+			}
+			prev = cur;
+		}
+		return rsl;
+	}
 	public static void main(String[] args) {
 		PostOrder sol = new PostOrder();
 		TreeNode root = new TreeNode(5);
@@ -48,8 +82,8 @@ public class PostOrder {
 		root.left = a;
 		root.right = b;
 		a.left = c;
-		for (TreeNode t : sol.postOrder(root)) {
-			System.out.println(t.val);
+		for (Integer t : sol.post(root)) {
+			System.out.println(t);
 		}
 	}
 
