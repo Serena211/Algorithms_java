@@ -1,6 +1,6 @@
 package Class08_String2;
 
-import java.util.HashMap;
+import java.util.HashSet;
 
 /*
  * Given a string, find the longest substring without any repeating characters 
@@ -11,26 +11,58 @@ import java.util.HashMap;
  */
 public class LongestSubstringWithoutRepeatingCharacters {
 	public int longest(String input) {
+		// corner case:
+		if (input.length() <= 1) {
+			return input.length();
+		}
 		int longest = 0;
-		HashMap<Character, Integer> visited = new HashMap<Character, Integer>();
-		int start = 0;
-		visited.put(input.charAt(start),0);
-		int end = 1;
-		helper(longest, visited,0,1);
+		int slow = 0;
+		int fast = 0;
+		HashSet<Character> visited = new HashSet<Character>();
+		while (fast < input.length()) {
+			char temp = input.charAt(fast);
+			if (visited.contains(temp)) {
+				visited.remove(input.charAt(slow++));
+			} else {
+				visited.add(temp);
+				fast++;
+				longest = Math.max(longest, fast - slow);
+			}
+		}
 		return longest;
 	}
-
-
-	private void helper(int longest, HashMap<Character, Integer> visited,
-			int i, int j) {
-		// TODO Auto-generated method stub
-		
+	
+	public String longestString(String input) {
+		if (input.length() <= 1) {
+			return input;
+		}
+		HashSet<Character> visited = new HashSet<Character>();
+		int longest = 0;
+		int start = 0;
+		int end = 0;
+		int fast = 0;
+		int slow = 0;
+		while (fast < input.length()) {
+			char temp = input.charAt(fast);
+			if (visited.contains(temp)) {
+				visited.remove(input.charAt(slow++));
+			} else {
+				visited.add(temp);
+				fast++;
+				if (longest < fast - slow) {
+					longest = fast - slow;
+					start = slow;
+					end = fast;
+				}
+			}
+		}
+		return input.substring(start, end); // [start,end)
 	}
 
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		LongestSubstringWithoutRepeatingCharacters sol = new LongestSubstringWithoutRepeatingCharacters();
+		System.out.println(sol.longestString("a"));
 	}
 
 }

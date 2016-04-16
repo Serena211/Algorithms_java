@@ -12,31 +12,33 @@ package Class07_Hashtable_String1;
  */
 public class RemoveSpaces {
 	public String removeSpaces(String input) {
-		char[] in = input.toCharArray();
-		int end = 0;
-		int pointer = 0;
-		int words = 0;
-		while (true) {
-			while (pointer < in.length && in[pointer] == ' ') {
-				pointer++;
+		char[] s = input.toCharArray();
+		int slow = 0;
+		int fast = 0;
+		int word = 0;
+
+		while (fast < s.length) {
+			if (word > 0 && s[fast] != ' ') {
+				s[slow++] = ' ';
 			}
-			if (pointer == in.length) {
-				break;
+			if (s[fast] != ' ') {
+				while (fast < s.length && s[fast] != ' ') {
+					s[slow++] = s[fast++]; 
+				}
+				word++;
+			} else {
+				fast++;
 			}
-			if (words != 0) {
-				in[end++] = ' ';
-			}
-			while (pointer < in.length && in[pointer] != ' ') {
-				in[end++] = in[pointer++];
-			}
-			words++;
 		}
-		return new String(in, 0, end);
+
+		return new String(s, 0, slow); // array, initial offset, length;
 	}
 
 	public static void main(String[] args) {
 		RemoveSpaces sol = new RemoveSpaces();
-		System.out.println(sol.removeSpaces("  d "));
+		System.out.println(sol.removeSpaces(" ILove Yahoo"));
+//		char[] t = new char[]{'a','b','c'};
+//		System.out.println(new String(t,0,2));
 	}
 
 }
