@@ -1,11 +1,17 @@
 package Class08_String2;
 
+import java.util.Arrays;
+// assumption: The given array is not null.
 public class ReOrderArray {
 	public int[] reorder(int[] array) {
 		if (array.length <= 3) {
 			return array;
 		}
-		helper(array, 0, array.length - 1);
+		if (array.length % 2 == 0) {
+			helper(array, 0, array.length - 1);
+		} else {
+			helper(array, 0, array.length - 2);
+		}		
 		return array;
 	}
 
@@ -32,21 +38,20 @@ public class ReOrderArray {
 			return;
 		}
 		while (left < right) {
-			swap(str, left, right);
+			int temp = str[left];
+			str[left] = str[right];
+			str[right] = temp;
 			left++;
 			right--;
 		}
 	}
-	private void swap(int[] arr, int i, int j) {
-		// TODO Auto-generated method stub
-		int temp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = temp;
-	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ReOrderArray sol = new ReOrderArray();
-		System.out.println(sol.reorder(new int[]{1,2,3,4,5,6,7}));
+		int[] t = new int[]{1,2,3,4,5,6,7};
+		int[] rsl = sol.reorder(t);
+		System.out.println(Arrays.toString(rsl));
 	}
 
 }
