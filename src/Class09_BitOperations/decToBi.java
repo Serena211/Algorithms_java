@@ -27,6 +27,6 @@ public class decToBi {
 	public static void main(String[] args) {
 		decToBi sol = new decToBi();
 	    System.out.println(sol.intToString(5, 4));
-	    System.out.println(sol.intToString(6, 4));
+	    System.out.println(sol.intToString(11, 4));
 	}
 }
