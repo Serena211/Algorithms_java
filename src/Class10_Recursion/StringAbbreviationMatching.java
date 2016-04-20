@@ -35,6 +35,7 @@ public class StringAbbreviationMatching {
 			if (pattern.charAt(0) == input.charAt(0)) {
 				return match(input.substring(1), pattern.substring(1));
 			}
+			return false;
 		}
 	}
 
