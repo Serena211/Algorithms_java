@@ -18,6 +18,25 @@ public class ClosestNumberInBinarySearchTree {
 		
 		return helper(root,rsl, target);
 	}
+
+	private int helper(TreeNode root, int rsl, int target) {
+		// TODO Auto-generated method stub
+		if (root == null) {
+			return rsl;
+		}
+		if (root.val == target) {
+			return root.val;
+		}
+		if (Math.abs(root.val - target) < Math.abs(rsl - target)) {
+			rsl = root.val;
+		}
+		if (root.val < target) {
+			rsl = helper(root.right, rsl, target);
+		} else {
+			rsl = helper(root.left, rsl, target);
+		}
+		return rsl;
+	}
 //	private TreeNode rsl = null;
 //	public int closest(TreeNode root, int target) {
 //		int minGap = Math.abs(root.val - target);
@@ -38,26 +57,6 @@ public class ClosestNumberInBinarySearchTree {
 //		}
 //		return Math.min(minGap, Math.min(leftMin, rightMin));
 //	}
-
-	private int helper(TreeNode root, int rsl, int target) {
-		// TODO Auto-generated method stub
-		if (root == null) {
-			return rsl;
-		}
-		if (root.val == target) {
-			return root.val;
-		}
-		if (Math.abs(root.val - target) < Math.abs(rsl - target)) {
-			rsl = root.val;
-		}
-		if (root.val < target) {
-			rsl = helper(root.right, rsl, target);
-		} else {
-			rsl = helper(root.left, rsl, target);
-		}
-		return rsl;
-	}
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ClosestNumberInBinarySearchTree sol = new ClosestNumberInBinarySearchTree();

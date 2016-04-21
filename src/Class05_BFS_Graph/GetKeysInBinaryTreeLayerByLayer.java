@@ -41,7 +41,7 @@ public class GetKeysInBinaryTreeLayerByLayer {
 			List<Integer> curLayer = new ArrayList<Integer>();
 			while(size > 0) {
 				TreeNode cur = queue.poll();
-				curLayer.add(cur.key);
+				curLayer.add(cur.val);
 				if(cur.left != null) {
 					queue.offer(cur.left);
 				}
