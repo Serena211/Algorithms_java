@@ -23,17 +23,18 @@ public class MaxProductOfCuttingRope {
 		int[] product = new int[length + 1];
 		product[1] = 0;
 		product[2] = 1;
-		for (int i = 0; i < product.length; i++) {
-			for (int j = 0; j <= product.length/2; j++) {
-				product[i] = Math.max(product[i], Math.max(i - j, product[i - j]));
+		for (int i = 3; i < product.length; i++) {
+			for (int j = 1; j <= i/2; j++) {
+				product[i] = Math.max(product[i], j * Math.max(i - j, product[i - j]));
 			}
 		}
-		return product[lenght];
+		return product[length];
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		MaxProductOfCuttingRope sol = new MaxProductOfCuttingRope();
+		System.out.println(sol.maxProduct(9));
 	}
 
 }

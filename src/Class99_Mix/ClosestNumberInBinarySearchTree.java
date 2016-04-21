@@ -13,39 +13,65 @@ import Class05_BFS_Graph.TreeNode;
 
 public class ClosestNumberInBinarySearchTree {
 	public int closest(TreeNode root, int target) {
-		TreeNode rsl = null;
-		int minGap = Math.abs(root.val - target);
-		return helper(root, target, minGap, rsl);
+		// Write your solution here.
+		int rsl = root.val;
+		
+		return helper(root,rsl, target);
 	}
+//	private TreeNode rsl = null;
+//	public int closest(TreeNode root, int target) {
+//		int minGap = Math.abs(root.val - target);
+//		int gap =helper(root, target, minGap);
+//		return rsl.val;
+//	}
+//
+//	private int helper(TreeNode root, int target, int minGap) {
+//		if (root == null) {
+//			return Integer.MAX_VALUE;
+//		}
+//		int leftMin = helper(root.left, target, minGap);
+//		int rightMin = helper(root.right, target, minGap);
+//		int temp = Math.abs(target - root.val); 
+//		if (temp < leftMin && temp < rightMin) {
+//			minGap = temp;
+//			rsl = root;
+//		}
+//		return Math.min(minGap, Math.min(leftMin, rightMin));
+//	}
 
-	private int helper(TreeNode root, int target, int minGap, TreeNode rsl) {
+	private int helper(TreeNode root, int rsl, int target) {
+		// TODO Auto-generated method stub
 		if (root == null) {
-			return Integer.MAX_VALUE;
+			return rsl;
 		}
-		int leftMin = helper(root.left, target, minGap, rsl);
-		int rightMin = helper(root.right, target, minGap, rsl);
-		int temp = Math.abs(target - root.val); 
-		if (leftMin < minGap) {
-			minGap = leftMin;
-			
+		if (root.val == target) {
+			return root.val;
 		}
-		return 0;
+		if (Math.abs(root.val - target) < Math.abs(rsl - target)) {
+			rsl = root.val;
+		}
+		if (root.val < target) {
+			rsl = helper(root.right, rsl, target);
+		} else {
+			rsl = helper(root.left, rsl, target);
+		}
+		return rsl;
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ClosestNumberInBinarySearchTree sol = new ClosestNumberInBinarySearchTree();
 		TreeNode root = new TreeNode(5);
-		TreeNode a = new TreeNode(3);
-		TreeNode b = new TreeNode(3);
-		// TreeNode c = new TreeNode(1);
-		// TreeNode e = new TreeNode(1);
+		TreeNode a = new TreeNode(2);
+		TreeNode b = new TreeNode(9);
+		 TreeNode c = new TreeNode(1);
+		 TreeNode e = new TreeNode(14);
 		root.left = a;
 		root.right = b;
-		// a.left = c;
-		// b.right = e;
+		 a.left = c;
+		 b.right = e;
 
-		System.out.println(sol.closest(root, 3));
+		System.out.println(sol.closest(e, 8));
 	}
 
 }
