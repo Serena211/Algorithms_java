@@ -24,6 +24,7 @@ public class HeightofBinaryTree {
 		}
 		int leftHeight = getHeight(root.left);
 		int rightHeight = getHeight(root.right);
+		root.height = Math.max(leftHeight, rightHeight) + 1;
 		return Math.max(leftHeight, rightHeight) + 1;
 	}
 
