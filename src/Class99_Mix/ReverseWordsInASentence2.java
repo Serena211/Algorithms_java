@@ -10,6 +10,7 @@ package Class99_Mix;
  * If the given string is null, we do not need to do anything.
  */
 
+// in-place???
 public class ReverseWordsInASentence2 {
 	public String reverseWords(String input) {
 		if (input == null || input.length() == 0) {

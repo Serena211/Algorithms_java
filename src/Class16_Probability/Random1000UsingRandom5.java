@@ -1,6 +1,6 @@
 package Class16_Probability;
 
-public class PerfectShuffle {
+public class Random1000UsingRandom5 {
 
 //	public int random1000() {
 //		// Write your solution here.
