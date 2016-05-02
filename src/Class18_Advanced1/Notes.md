@@ -27,3 +27,5 @@ Method 1: Rotate by -90 twice
 Method 2: Reverse each column and then reverse each row
 
 Method 3: Reverse by +180 as they are same
+
+Comes from: http://stackoverflow.com/a/8664879
