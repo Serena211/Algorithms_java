@@ -1,5 +1,7 @@
 package Class16_Probability;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -15,23 +17,22 @@ import java.util.List;
  */
 public class Percentile95 {
 	public int percentile95(List<Integer> lengths) {
-		// lengths is not null and size >= 1 with non null
-		int[] count = new int[4097];
+		int[] urlCount = new int[4097];
+		for (Integer i : lengths) {
+			urlCount[i]++;		// count how many urls have same length
+		}
 		int sum = 0;
-		for (Integer len : lengths) {
-			count[len]++;
-		}
-		int i = 4097;
+		int targetLen = 4096;
 		while (sum <= 0.05 * lengths.size()) {
-			sum += count[i - 1];
-			i--;
+			sum += urlCount[targetLen--];
 		}
-		return i;
+		return targetLen + 1;
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Percentile95 sol = new Percentile95();
+		List<Integer> lengths = new ArrayList<Integer>(Arrays.asList(1,2,2,2,2,2,2,2,4,5,6,1,331,232,5,3,143,104));
+		System.out.println(sol.percentile95(lengths));
 	}
 
 }
