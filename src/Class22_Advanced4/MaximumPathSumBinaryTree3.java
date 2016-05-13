@@ -34,7 +34,6 @@ public class MaximumPathSumBinaryTree3 {
 		
 		max[0] = Math.max(Math.max(left, right) + root.val, max[0]);
 		return root.val + Math.max(left, right);
-		
 	}
 
 	public static void main(String[] args) {
