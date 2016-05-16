@@ -22,3 +22,17 @@ o2 - the second object to be compared.
 Returns:
 
 a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
+
+**Arrays.sort** 
+
+1. primitive type array
+
+Quicksort: time complexity O(nlogn) (worse O(n^2))
+
+		   space comlexity: O(1)
+
+2. Object
+
+Mergesort: time complexity O(nlogn) **stable**
+
+		   space comlexity: O(n)
