@@ -67,7 +67,7 @@ public class MajorityNumber2 {
 
 	public static void main(String[] args) {
 		MajorityNumber2 sol = new MajorityNumber2();
-		System.out.println(sol.majority(new int[] { 1, 2 }));
+		System.out.println(sol.majority((new int[] { 1, 2,1,2,0,0,1 })));
 	}
 
 }
