@@ -30,29 +30,46 @@ import Class05_BFS_Graph.TreeNode;
  */
 
 public class ReconstructBinaryTreeWithPreorderAndInorder {
+//	public TreeNode reconstruct(int[] in, int[] pre) {
+//		// use hashmap to store (value, index) of int[] in
+//		HashMap<Integer, Integer> indexOfInOrder = new HashMap<Integer, Integer>();
+//		for (int i = 0; i < in.length; i++) {
+//			indexOfInOrder.put(in[i], i);
+//		}
+//		
+//		return helper(0, in.length - 1, pre, 0, pre.length - 1, indexOfInOrder);
+//	}
+//	private TreeNode helper(int in_l, int in_r, 
+//			int[] pre, int pre_l, int pre_r, 
+//			HashMap<Integer, Integer> map) {
+//		// base case: 
+//		if (in_l > in_r) {
+//			return null;
+//		}
+//		
+//		// recursion rule:
+//		TreeNode root = new TreeNode(pre[pre_l]);
+//		int rootIdx = map.get(root.val);
+////		int rightSize = pre.length - leftSize - 1;
+//		root.left = helper(in_l, rootIdx - 1, pre, pre_l + 1, pre_l + (rootIdx - in_l), map);
+//		root.right = helper(rootIdx + 1, in_r, pre, pre_l + (rootIdx - in_l) + 1, pre_r, map);
+//		return root;
+//	}
 	public TreeNode reconstruct(int[] in, int[] pre) {
-		// use hashmap to store (value, index) of int[] in
-		HashMap<Integer, Integer> indexOfInOrder = new HashMap<Integer, Integer>();
-		for (int i = 0; i < in.length; i++) {
-			indexOfInOrder.put(in[i], i);
-		}
-		
-		return helper(0, in.length - 1, pre, 0, pre.length - 1, indexOfInOrder);
+		int[] in_idx = new int[]{0};
+		int[] pre_idx = new int[]{0};
+		return helper(in, pre, in_idx, pre_idx, Integer.MAX_VALUE);
 	}
-	private TreeNode helper(int in_l, int in_r, 
-			int[] pre, int pre_l, int pre_r, 
-			HashMap<Integer, Integer> map) {
-		// base case: 
-		if (in_l > in_r) {
+
+	private TreeNode helper(int[] in, int[] pre, int[] in_idx, int[] pre_idx, int rootValue) {
+		if (pre_idx[0] >= pre.length || in[in_idx[0]] == rootValue) {
 			return null;
 		}
 		
-		// recursion rule:
-		TreeNode root = new TreeNode(pre[pre_l]);
-		int rootIdx = map.get(root.val);
-//		int rightSize = pre.length - leftSize - 1;
-		root.left = helper(in_l, rootIdx - 1, pre, pre_l + 1, pre_l + (rootIdx - in_l), map);
-		root.right = helper(rootIdx + 1, in_r, pre, pre_l + (rootIdx - in_l) + 1, pre_r, map);
+		TreeNode root= new TreeNode(pre[pre_idx[0]++]);
+		root.left = helper(in, pre, in_idx, pre_idx, root.val);
+		in_idx[0]++;
+		root.right = helper(in, pre, in_idx, pre_idx, rootValue);
 		return root;
 	}
 	public static void main(String[] args) {
