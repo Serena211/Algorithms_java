@@ -1,5 +1,8 @@
 package Class24;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /*
  * Given a string containing just the characters '(' and ')', find the length of the 
  * longest valid (well-formed) parentheses substring.
@@ -15,19 +18,24 @@ public class LongestValidParentheses {
 			return 0;
 		}
 		int[] len = new int[s.length()];
+		Deque<Character> stack = new LinkedList<Character>();
 		// base case:
+		len[0] = 0;
+		stack.offerFirst(s.charAt(0));
 //		len[1] = s.charAt(0) == '(' && s.charAt(1) == ')' ? 1 : 0;
-		int left = 0;
-		int right = 0;
-		for (int i = 0; i < s.length(); i++) {
+//		int left = 0;
+//		int right = 0;
+		for (int i = 1; i < s.length(); i++) {
 			if (s.charAt(i) == '(') {
-				left++;
-			} else if (left > right && s.charAt(i) == ')') {
-				right++;
-			} else 
-			len[i] = 0;
+				stack.offerFirst('(');
+				len[i] = len[i-1];
+			} else {
+				if (s.charAt(i) == ')' && stack.peekFirst() == '(') {
+					len[i] = len[i - 1] + 1;
+				}
+			}
 		}
-		return right * 2;
+		return len[s.length() - 1];
 	}
 
 	public static void main(String[] args) {
