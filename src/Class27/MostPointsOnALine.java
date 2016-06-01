@@ -63,7 +63,7 @@ public class MostPointsOnALine {
 
 	public static void main(String[] args) {
 		MostPointsOnALine sol = new MostPointsOnALine();
-		Point[] points = new Point[]{new Point(1,2), new Point(2,4),new Point(3,6),new Point(0,-2), };
+		Point[] points = new Point[]{new Point(1,2), new Point(3,4),new Point(3,6),new Point(0,-2), };
 		System.out.println(sol.most(points));;
 	}
 
