@@ -24,47 +24,64 @@ class Point {
 		this.y = y;
 	}
 }
-
+/* Overview: 1. For each points, draw lines can fine the line with largest amount of points.
+			 2. Two types line: one is perpendicular to x-axis, another one has slope.
+*/
 public class MostPointsOnALine {
 	// How to represent a line?
 	// y = ax + b (a and b decide an unique line)
 	// corner case: x = k, if a line is perpendicular to x-axis, a is undefined.
+	
+	// Assumption: The given array is not null and it has at least 2 points
 	public int most(Point[] points) {
-		HashMap<Point, List<Point>> ab = new HashMap<Point, List<Point>>();
-		HashMap<Integer, List<Point>> vertical = new HashMap<Integer, List<Point>>();
-		int maxNum = 2;
-		for (int i = 0; i < points.length - 1; i++) {
-			for (int j = i; j < points.length; j++) {
-				if (points[i].x == points[j].x) {
-					int k = points[i].x;
-					List<Point> cur = ab.get(k);
-					if (cur == null) {
-						cur = new ArrayList<Point>();
-					}
-					cur.add(points[i]);
-					cur.add(points[j]);
-					maxNum = Math.max(maxNum, cur.size());
+		// Use maxNum to track the maximum number of points on a line.
+		int maxNum = 2;		
+		for (int i = 0; i < points.length; i++) {
+			Point cur1 = points[i];
+			int x1 = cur1.x;
+			int y1 = cur1.y;
+			int samePoint = 1;
+			int sameX = 0;
+			// abMap HashMap keeps slope and points belong to the slope
+			HashMap<Double,Integer> abMap = new HashMap<Double, Integer>();
+			int curMax = 0;
+			for (int j = 0; j < points.length; j++) {
+				if (i == j) {
+					continue;
+				}
+				Point cur2 = points[j];
+				int x2 = cur2.x;
+				int y2 = cur2.y;
+				//s1: same points
+				if (x1 == x2 && y1 == y2) {
+					samePoint++;
+				} else if (x1 == x2) {
+					//s2: x = k, perpendicular to x-axis
+					sameX++;
 				} else {
-					int a = (points[i].y - points[j].y)/(points[i].x - points[j].x);
-					int b = points[i].y - a * points[i].x;
-					Point newAB = new Point(a, b);
-					List<Point> cur = ab.get(newAB);
-					if (cur == null) {
-						cur = new ArrayList<Point>();
+					//s3: y = ax + b
+					double slope = ((y1 - y2) + 0.0) / (x1 - x2);
+					Integer size = abMap.get(slope);
+					if (size == null) {
+						abMap.put(slope, 1);
+					} else {
+						abMap.put(slope, size + 1);
 					}
-					cur.add(points[i]);
-					cur.add(points[j]);
-					maxNum = Math.max(maxNum, cur.size());
+					curMax = Math.max(curMax, abMap.get(slope));
 				}
 			}
+			curMax = Math.max(sameX, curMax) + samePoint;
+			maxNum = Math.max(maxNum, curMax);
 		}
 		return maxNum;
 	}
 
 	public static void main(String[] args) {
 		MostPointsOnALine sol = new MostPointsOnALine();
-		Point[] points = new Point[]{new Point(1,2), new Point(3,4),new Point(3,6),new Point(0,-2), };
-		System.out.println(sol.most(points));;
+		Point[] points = new Point[]{new Point(1,2), new Point(2,4),new Point(3,6),new Point(0,-2)};
+		System.out.println(sol.most(points));
+//		double x = 1.0/0.0;
+//		System.out.println(x);
 	}
 
 }
