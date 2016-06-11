@@ -1,6 +1,12 @@
 # Algorithms_java
 Java Exercises
-  
+ 
+**Infinity** 
+
+		double x = 1.0/0.0;
+		System.out.println(x);
+		
+		
 **What are the differences between static and non-static nested classes?** 
 
 Following are major differences between static nested class and non-static nested class. Non-static nested class is also called Inner Class.
