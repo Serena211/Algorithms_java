@@ -42,3 +42,9 @@ Quicksort: time complexity O(nlogn) (worse O(n^2))
 Mergesort: time complexity O(nlogn) **stable**
 
 		   space comlexity: O(n)
+		   
+		   
+		   
+**What's the difference between <?> and <Object>**
+link
+
