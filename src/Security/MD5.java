@@ -13,11 +13,12 @@ public class MD5 {
 		return (len < 1 || str == null) ? null : str.split("(?<=\\G.{" + len
 				+ "})");
 	}
-
+	
+	// generate MD5 code
 	private String getMD5Code(String str) throws NoSuchAlgorithmException {
-		MessageDigest m = MessageDigest.getInstance("MD5");
-		m.update(str.getBytes(), 0, str.length());
-		String rsl = new BigInteger(1, m.digest()).toString(16);
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		md.update(str.getBytes());
+		String rsl = new BigInteger(1, md.digest()).toString(16);
 		return rsl.length() == 32 ? rsl : "0" + rsl;
 	}
 
