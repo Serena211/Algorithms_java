@@ -13,13 +13,14 @@ public class MD5 {
 		return (len < 1 || str == null) ? null : str.split("(?<=\\G.{" + len
 				+ "})");
 	}
-	
+
 	private String getMD5Code(String str) throws NoSuchAlgorithmException {
 		MessageDigest m = MessageDigest.getInstance("MD5");
 		m.update(str.getBytes(), 0, str.length());
 		String rsl = new BigInteger(1, m.digest()).toString(16);
-		return rsl.length() == 32? rsl : "0" + rsl;
+		return rsl.length() == 32 ? rsl : "0" + rsl;
 	}
+
 	public String getEmail(String INPUT, String[] INPUT_ARRAY, char[] EMAIL_CHAR)
 			throws NoSuchAlgorithmException {
 		String email = "";
@@ -48,12 +49,9 @@ public class MD5 {
 		// System.out.println(email);
 	}
 
-	
-
 	public static void main(String args[]) throws NoSuchAlgorithmException {
 		MD5 input = new MD5();
 		System.out.println(input.getEmail(MD5.INPUT, MD5.INPUT_ARRAY,
 				MD5.EMAIL_CHAR));
 	}
 }
-
